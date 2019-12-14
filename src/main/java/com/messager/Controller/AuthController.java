@@ -1,8 +1,8 @@
 package com.messager.Controller;
 
-import com.messager.Model.Role;
-import com.messager.Model.RoleName;
-import com.messager.Model.User;
+import com.messager.model.Role;
+import com.messager.model.RoleName;
+import com.messager.model.User;
 import com.messager.Repository.RoleRepository;
 import com.messager.Repository.UserRepository;
 import com.messager.exception.AppException;

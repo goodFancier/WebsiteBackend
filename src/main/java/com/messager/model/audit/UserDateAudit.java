@@ -1,4 +1,4 @@
-package com.messager.Model.audit;
+package com.messager.model.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedBy;

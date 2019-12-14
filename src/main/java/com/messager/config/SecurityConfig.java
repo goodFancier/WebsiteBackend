@@ -1,6 +1,5 @@
 package com.messager.config;
 
-import com.messager.Service.UserDataService;
 import com.messager.security.JwtAuthenticationEntryPoint;
 import com.messager.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -29,7 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Autowired
-    UserDataService userDataService;
+    public UserDetailsService userDataService;
 
     @Bean
     JwtAuthenticationEntryPoint unauthorizedHandler()
@@ -91,7 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .permitAll()
                 .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")
+                .antMatchers(HttpMethod.GET, "/api/users/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

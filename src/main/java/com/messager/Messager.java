@@ -16,13 +16,11 @@ import java.io.IOException;
 @ComponentScan(basePackages = {
         "com.messager.config",
         "com.messager.Controller",
-        "com.messager.Model",
-        "com.messager.Entity",
+        "com.messager.model",
         "com.messager.exception",
         "com.messager.Repository",
         "com.messager.security",
-        "com.messager.Utils",
-        "com.messager.Service"
+        "com.messager.utils"
 })
 public class Messager
 {

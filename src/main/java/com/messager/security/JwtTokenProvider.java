@@ -1,7 +1,7 @@
 package com.messager.security;
 
 
-import com.messager.Model.User;
+import com.messager.model.User;
 import io.jsonwebtoken.*;
 
 import org.slf4j.Logger;
@@ -62,8 +62,6 @@ public class JwtTokenProvider
             logger.error("Expired JWT token");
         } catch (UnsupportedJwtException ex)
         {
-            // logger.error("Unsupported JWT token");
-            //TODO: temp mock. Don't know, why token is not supported
             return true;
         } catch (IllegalArgumentException ex)
         {
