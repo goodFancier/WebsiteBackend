@@ -1,9 +1,7 @@
 package com.messager.Controller;
 
 import com.messager.model.User;
-import com.messager.Repository.PollRepository;
 import com.messager.Repository.UserRepository;
-import com.messager.Repository.VoteRepository;
 import com.messager.exception.ResourceNotFoundException;
 import com.messager.payload.*;
 import com.messager.security.CurrentUser;
@@ -23,12 +21,6 @@ public class UserController
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private PollRepository pollRepository;
-
-    @Autowired
-    private VoteRepository voteRepository;
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -73,10 +65,7 @@ public class UserController
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 
-        long pollCount = pollRepository.countByCreatedBy(user.getId());
-        long voteCount = voteRepository.countByUserId(user.getId());
-
-        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreatedAt(), pollCount, voteCount);
+        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreatedAt());
 
         return userProfile;
     }

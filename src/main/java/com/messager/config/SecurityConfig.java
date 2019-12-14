@@ -1,6 +1,5 @@
 package com.messager.config;
 
-import com.messager.Service.UserDataService;
 import com.messager.security.JwtAuthenticationEntryPoint;
 import com.messager.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .permitAll()
                 .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")
+                .antMatchers(HttpMethod.GET, "/api/users/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
