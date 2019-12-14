@@ -1,18 +1,18 @@
 package com.messager.Controller;
 
+import com.messager.Repository.GoodsRepository;
 import com.messager.model.Good;
-import com.messager.model.User;
 import com.messager.model.UserBucket;
 import com.messager.Repository.UserBucketRepository;
 import com.messager.Repository.UserRepository;
+import com.messager.utils.GoodUtils;
+import com.messager.utils.UserBucketUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -24,31 +24,46 @@ public class UserBucketController
     private UserBucketRepository userBucketRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private GoodsRepository goodsRepository;
+
+    @Autowired
+    private UserBucketUtils userBucketUtils;
+
+    @Autowired
+    private GoodUtils goodUtils;
+
+    @GetMapping("/deleteFromUserBucket")
+    public List<Good> deleteFromUserBucket(@RequestParam(value = "userId") String userId, @RequestParam(value = "goodId") String goodId)
+    {
+        UserBucket userBucket = userBucketUtils.getUserBucketByUserId(userId);
+        userBucket.getBucketGoods().remove(goodsRepository.findGoodById(Long.valueOf(goodId)));
+        userBucketRepository.save(userBucket);
+        return userBucket.getBucketGoods();
+    }
+
+    @GetMapping("/getBucketTotalSum")
+    public Integer getBucketTotalSum(@RequestParam(value = "userId") String userId)
+    {
+        UserBucket userBucket = userBucketUtils.getUserBucketByUserId(userId);
+        return userBucket.getBucketGoods().stream().map(Good::getCurrentPrice)
+                .map(Integer::valueOf)
+                .reduce(0, Integer::sum);
+    }
+
+
+    @GetMapping("/addToBucket")
+    public void addToBucket(@RequestParam(value = "userId") String userId, @RequestParam(value = "goodId") String goodId)
+    {
+        UserBucket userBucket = userBucketUtils.getUserBucketByUserId(userId);
+        userBucket.getBucketGoods().add(goodsRepository.findGoodById(Long.valueOf(goodId)));
+        userBucketRepository.save(userBucket);
+    }
 
     @GetMapping("/getUserGoods")
     public List<Good> getUserGoods(@RequestParam(value = "userId") String userId)
     {
-        UserBucket userBucket;
-        Optional<User> user = userRepository.findById(Long.valueOf(userId));
-        if (user.isPresent())
-        {
-            boolean isUserBucketPresent = userBucketRepository.findByUser(user.get()).isPresent();
-            if (isUserBucketPresent)
-            {
-                userBucket = userBucketRepository.findByUser(user.get()).get();
-                return userBucket.getBucketGoods();
-            } else
-            {
-                logger.info("Корзины не найдено. Создаем новую для пользователя");
-                userBucket = new UserBucket();
-                userBucket.setUser(user.get());
-                return new ArrayList<>();
-            }
-        } else
-        {
-            logger.error("не удалось получить пользователя по id");
-            return new ArrayList<>();
-        }
+        List<Good> goodList = userBucketUtils.getUserBucketByUserId(userId).getBucketGoods();
+        goodUtils.initGoodImages(goodList);
+        return goodList;
     }
 }

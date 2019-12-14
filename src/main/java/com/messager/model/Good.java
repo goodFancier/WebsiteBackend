@@ -2,10 +2,7 @@ package com.messager.model;
 
 import com.messager.model.audit.DateAudit;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Good extends DateAudit
@@ -19,6 +16,11 @@ public class Good extends DateAudit
     private String oldPrice;
 
     private String currentPrice;
+
+    private byte[] image;
+
+    @Transient
+    private String imageUrl;
 
     public String getName()
     {
@@ -58,5 +60,25 @@ public class Good extends DateAudit
     public void setCurrentPrice(String currentPrice)
     {
         this.currentPrice = currentPrice;
+    }
+
+    public String getImageUrl()
+    {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl)
+    {
+        this.imageUrl = imageUrl;
+    }
+
+    public byte[] getImage()
+    {
+        return image;
+    }
+
+    public void setImage(byte[] image)
+    {
+        this.image = image;
     }
 }

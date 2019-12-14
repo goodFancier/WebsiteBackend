@@ -19,7 +19,8 @@ import java.io.IOException;
         "com.messager.model",
         "com.messager.exception",
         "com.messager.Repository",
-        "com.messager.security"
+        "com.messager.security",
+        "com.messager.utils"
 })
 public class Messager
 {
