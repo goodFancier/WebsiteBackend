@@ -1,6 +1,6 @@
 package com.messager.Controller;
 
-import com.messager.Model.Good;
+import com.messager.model.Good;
 import com.messager.Repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

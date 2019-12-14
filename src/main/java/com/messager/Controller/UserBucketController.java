@@ -1,8 +1,8 @@
 package com.messager.Controller;
 
-import com.messager.Model.Good;
-import com.messager.Model.User;
-import com.messager.Model.UserBucket;
+import com.messager.model.Good;
+import com.messager.model.User;
+import com.messager.model.UserBucket;
 import com.messager.Repository.UserBucketRepository;
 import com.messager.Repository.UserRepository;
 import org.slf4j.Logger;

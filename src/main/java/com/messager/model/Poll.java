@@ -1,6 +1,6 @@
-package com.messager.Model;
+package com.messager.model;
 
-import com.messager.Model.audit.UserDateAudit;
+import com.messager.model.audit.UserDateAudit;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;

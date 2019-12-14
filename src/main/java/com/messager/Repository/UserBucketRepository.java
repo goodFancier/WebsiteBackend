@@ -1,7 +1,7 @@
 package com.messager.Repository;
 
-import com.messager.Model.User;
-import com.messager.Model.UserBucket;
+import com.messager.model.User;
+import com.messager.model.UserBucket;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

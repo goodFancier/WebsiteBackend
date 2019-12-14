@@ -1,7 +1,7 @@
 package com.messager.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.messager.Model.User;
+import com.messager.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,7 @@
-package com.messager.Model;
+package com.messager.model;
 
 
-import com.messager.Model.audit.DateAudit;
+import com.messager.model.audit.DateAudit;
 
 import javax.persistence.*;
 

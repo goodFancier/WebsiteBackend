@@ -1,7 +1,6 @@
-package com.messager.Model;
+package com.messager.model;
 
-import com.messager.Model.ORM.ORMDto;
-import com.messager.Model.audit.DateAudit;
+import com.messager.model.audit.DateAudit;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
 package com.messager.Repository;
 
-import com.messager.Model.Poll;
+import com.messager.model.Poll;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

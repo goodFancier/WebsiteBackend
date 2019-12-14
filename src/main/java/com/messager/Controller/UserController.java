@@ -1,6 +1,6 @@
 package com.messager.Controller;
 
-import com.messager.Model.User;
+import com.messager.model.User;
 import com.messager.Repository.PollRepository;
 import com.messager.Repository.UserRepository;
 import com.messager.Repository.VoteRepository;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
